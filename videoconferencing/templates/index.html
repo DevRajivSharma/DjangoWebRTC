@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Have_It</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+    <h1>This is profile section</h1>
+    <h3 id="label_username">Username</h3>
+    <div >
+        <input type="text" placeholder="Username" id="username">
+        <input type="text" name="" id="room" placeholder="Room">
+        <button id="join">Join Room</button>
+    </div>
+
+    <h1>This is video section</h1>
+    <div class="video-container">
+
+        <video src="" id="video-box" autoplay playsinline width="30%"></video>
+        <video src="" id="video-box2" autoplay playsinline width="30%" style="border:2px solid  black;"></video>
+        <br>
+        <button id="audio_toggle">Audio mute</button>
+        <button id="video_toggle">Video off</button>
+    </div>
+    <button id="call_btn">Call</button>
+    <h1>Chats</h1>
+    <input type="text"  id="text"><button id="send-message">send</button>
+    <div id="chat">
+        <ul id="chat-container"></ul>
+    </div>
+    
+
+    <h1>Share Screen</h1>
+    <button id="share-screen">Share-screen</button>
+    <script src="{% static 'js/main.js' %}" ></script>
+</body>
+</html>
