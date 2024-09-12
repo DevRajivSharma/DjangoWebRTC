@@ -313,7 +313,7 @@ function createVideo(peerUsername) {
 
     remoteVideo.autoplay = true;
     remoteVideo.playsInline = true;
-    remoteVideo.width = '30%';
+    remoteVideo.style.width = '30%';
 
     var videoWrapper = document.createElement('div');
     videoContainer.appendChild(videoWrapper);
