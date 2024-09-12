@@ -1,41 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-    {% load static %}
+<!DOCTYPE html >
+{%load static%}
+<html lang = "en" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Have_It</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <meta charset = "UTF-8" >
+    <title > Django Channels WebRTC </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
 <body>
-
-    <h1>This is profile section</h1>
-    <h3 id="label_username">Username</h3>
+    <h3 id = "label-username" > USERNAME </h3>
     <div >
-        <input type="text" placeholder="Username" id="username">
-        <input type="text" name="" id="room" placeholder="Room">
-        <button id="join">Join Room</button>
-    </div>
+        <input id = "username" > <button id = "btn-join" > Join Room</button>
+    </div >
 
-    <h1>This is video section</h1>
-    <div class="video-container" id="videoContainer">
-        <div>
-            <video src="" id="video-box" autoplay playsinline width="30%"></video>
+    <div class = "main-grid-container" style="display: flex;flex-direction: column;">
+        <div id = "video-container">
+            <div> <video id = "local-video" width="30%" autoplay playsinline ></video>
+            </div>
+            <button id = "btn-toggle-audio">Audio Mute</button >
+            <button id = "btn-toggle-video">Video Off</button >
+        </div >
+
+        <div id = "chat">
+            <h3>CHAT</h3>
+            <div id = "messages">
+                <ul id = "message-list"></ul>
+            </div>
+
+            <div><input id = "msg"><button id="btn-send-msg">Send Message</button></div>
+            <button id = "btn-share-screen">Share Screen</button >  
         </div>
-        <br>
-        <button id="audio_toggle">Audio mute</button>
-        <button id="video_toggle">Video off</button>
     </div>
-    <button id="call_btn">Call</button>
-    <h1>Chats</h1>
-    <input type="text"  id="text"><button id="send-message">send</button>
-    <div id="chat">
-        <ul id="chat-container"></ul>
-    </div>
-    
 
-    <h1>Share Screen</h1>
-    <button id="share-screen">Share-screen</button>
-    <script src="{% static 'js/main.js' %}" ></script>
-</body>
-</html>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+                                                   
+</body >
+</html >

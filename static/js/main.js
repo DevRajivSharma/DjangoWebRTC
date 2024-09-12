@@ -9,18 +9,6 @@ var username;
 
 var webSocket;
 
-var peerConfig = {
-  iceServers: [
-      { urls: 'stun:stun.l.google.com:19302' }, // STUN server
-      { 
-          urls: 'turn:your-turn-server.com', 
-          username: 'your-username', 
-          credential: 'your-credential' 
-      } // TURN server
-  ]
-};
-
-
 function webSocketOnMessage(event){
     var parsedData = JSON.parse(event.data);
 
@@ -173,7 +161,7 @@ function sendSignal(action, message){
 }
 
 function createOfferer(peerUsername, receiver_channel_name){
-    var peer = new RTCPeerConnection(peerConfig);
+    var peer = new RTCPeerConnection(null);
 
     addLocalTracks(peer);
 
@@ -220,7 +208,7 @@ function createOfferer(peerUsername, receiver_channel_name){
 }
 
 function createAnswers(offer, peerUsername, receiver_channel_name){
-    var peer = new RTCPeerConnection(peerConfig);
+    var peer = new RTCPeerConnection(null);
 
     addLocalTracks(peer);
     
@@ -325,6 +313,7 @@ function createVideo(peerUsername) {
 
     remoteVideo.autoplay = true;
     remoteVideo.playsInline = true;
+    remoteVideo.width = '30%';
 
     var videoWrapper = document.createElement('div');
     videoContainer.appendChild(videoWrapper);
