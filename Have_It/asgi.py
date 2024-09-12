@@ -11,6 +11,7 @@ import os
 from channels.routing import ProtocolTypeRouter,URLRouter
 from django.core.asgi import get_asgi_application
 from channels.auth import AuthMiddlewareStack
+from channels.security.websocket import AllowedHostsOriginValidator
 import videoconferencing.routing
 
 
@@ -22,9 +23,11 @@ django_asgi_app = get_asgi_application()
 application = ProtocolTypeRouter({
     "http": django_asgi_app,
     # Just HTTP for now. (We can add other protocols later.)
-    "websocket" : AuthMiddlewareStack(
-        URLRouter(
-            videoconferencing.routing.websocket_urlpatterns
+    "websocket": AllowedHostsOriginValidator(
+        AuthMiddlewareStack(
+            URLRouter(
+                videoconferencing.routing.websocket_urlpatterns
+            )
         )
-    )
+    ),
 })
