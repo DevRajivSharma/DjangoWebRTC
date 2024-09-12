@@ -9,6 +9,12 @@ var username;
 
 var webSocket;
 
+var iceServers_inrtc =  {
+    iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' },
+        { urls: 'stun:stun1.l.google.com:19302' }
+    ]
+};
 function webSocketOnMessage(event){
     var parsedData = JSON.parse(event.data);
 
@@ -114,12 +120,19 @@ var userMedia = navigator.mediaDevices.getUserMedia(constraints)
         localVideo.srcObject = localStream;
         localVideo.muted = true;
 
+        localVideo.onloadedmetadata = () => {
+            localVideo.play();
+        };
+
+        
         var audioTracks = stream.getAudioTracks();
         var videoTracks = stream.getVideoTracks();
 
         audioTracks[0].enabled = true;
         videoTracks[0].enabled = true;
-
+        if (videoTracks.length > 0) {
+            console.log('Using video device: ' + videoTracks[0].label);
+        }
         btnToggleAudio.addEventListener('click', () => {
             audioTracks[0].enabled = !audioTracks[0].enabled ;
 
@@ -161,7 +174,7 @@ function sendSignal(action, message){
 }
 
 function createOfferer(peerUsername, receiver_channel_name){
-    var peer = new RTCPeerConnection(null);
+    var peer =  new RTCPeerConnection(iceServers_inrtc);
 
     addLocalTracks(peer);
 
@@ -208,7 +221,7 @@ function createOfferer(peerUsername, receiver_channel_name){
 }
 
 function createAnswers(offer, peerUsername, receiver_channel_name){
-    var peer = new RTCPeerConnection(null);
+    var peer =  new RTCPeerConnection(iceServers_inrtc);
 
     addLocalTracks(peer);
     
