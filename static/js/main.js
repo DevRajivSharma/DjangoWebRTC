@@ -9,12 +9,10 @@ var username;
 
 var webSocket;
 
-var iceServers_inrtc =  {
-    iceServers: [
-        { urls: 'stun:stun.l.google.com:19302' },
-        { urls: 'stun:stun1.l.google.com:19302' }
-    ]
+var iceServers_inrtc = {
+    iceServers: [{   urls: [ "stun:bn-turn1.xirsys.com" ]}, {   username: "pUYptICFn6faVXcProjVzLoVc4jeIKR9XZHnm0uNEWe1y6LguyeZ5eSUajsxpOvRAAAAAGbj25xyYWppdg==",   credential: "6d12cece-7199-11ef-98ea-0242ac140004",   urls: [       "turn:bn-turn1.xirsys.com:80?transport=udp",       "turn:bn-turn1.xirsys.com:3478?transport=udp",       "turn:bn-turn1.xirsys.com:80?transport=tcp",       "turn:bn-turn1.xirsys.com:3478?transport=tcp",       "turns:bn-turn1.xirsys.com:443?transport=tcp",       "turns:bn-turn1.xirsys.com:5349?transport=tcp"   ]}]
 };
+
 function webSocketOnMessage(event){
     var parsedData = JSON.parse(event.data);
 
